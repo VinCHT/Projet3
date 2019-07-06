@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Louer votre vélo à Lyon !"/>
+    <link rel="stylesheet" type="text/css" href=style.css />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <!-- Les deux lignes en dessous pour utiliser mpbox-->
+   <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+  -->
+
+ 
+
+    <title>Réservation en libre-service de vélos à Lyon</title>
+</head>
+    <body>
+
+        <div id="bloc_page">
+
+            <h1>Réservation en libre-service de vélos à Lyon</h1>
+
+
+             <!-- DEBUT BLOC SLIDER -->
+            
+             <div id="slider_container">
+                <div id="slider">
+                    <span class="controls" id="previous">&lt;</span>
+                    <span class="controls" id="next">&gt;</span>
+                    <div id="slider_main">
+                        <img src="images/slider1.jpg" title = "Accueil">
+                        <img src="images/slider2.jpg" title = "Comment le site fonctionne ?">
+                        <img src="images/slider3.png" title = "Choisir une station (1)">
+                        <img src="images/slider4.png" title = "Valider la réservation (2)">
+                        <img src="images/slider5.png" title = "Réservation en cours (3)">
+                    </div>
+                    <div id="slider_caption"></div>
+                </div>
+                <div id="slider_nav"></div>
+            </div>
+
+<!--<button class="controls" id="pause">Pause</button>-->
+
+             <!-- FIN BLOC SLIDER -->
+
+
+
+
+    <!--Add the following code to the <body> of your HTML file. -->
+
+    <div id = "blocCarte">
+        <div id='map'>
+            
+        </div>
+        
+        
+
+      
+   <!-- Un clic sur un marqueur affiche l’état de la station dans un panneau construit en HTML et CSS à côté de la carte. -->
+        <div id ='etatReservation'>
+            <div id="etape1">
+                Cliquez sur une station de la carte pour trouver votre vélo'v
+            </div>
+            <div id="station-info">
+                    <h3>Détails de la station</h3><br/>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="titreTable">Informations sur la station</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                    <p>Adresse :<span id="address"></span></p>
+                    <tr>
+                        <td>Status</td>
+                        <td id="status"></td>
+                    </tr>
+                    <tr>
+                        <td>Capacité d'accueil</td>
+                        <td id="capacite"></td>
+                    </tr>  
+                    <tr>
+                            <td>Place</td>
+                        <td id="place"></td>
+                    </tr>
+                    <tr>
+                        <td>Vélo(s) disponible(s)</td>
+                    <td id="bike"></td>
+                    </tr>
+                        </tbody>
+                    </table>
+                    <form>
+                        <fieldset> <!---->
+                            <legend>Inscrivez-vous</legend>
+                            <input type="text" name="nom" id="inpKey" placeholder = "Saisissez votre nom" required>
+                            <input type="text" name="prenom" id="inpValue" placeholder = "Saisissez votre prénom" required>
+                            <button type="button" id="btnInsert">Réserver</button>
+                        </fieldset>
+
+                            <fieldset>
+                                <legend>Local Storage</legend>
+                                <div id = "isOutput"></div>
+                            </fieldset>
+
+
+
+                    </form>
+                   
+   
+            </div>
+                    
+
+                    
+            <div id="reservation">
+                <h3>Réservation</h3><br/>
+                <p>Pour réserver ce vélo, veuillez signer ci-dessous puis valider:</p>
+
+                <canvas id="canvas" width="400" height="300"></canvas>
+                <div id="dashboard">
+                <input type="color" name="penColor" value="#000000">
+                <input type="range" name="penWidth" min="1" max="15" step="2"  value="5" >
+                <button type="button" id="annuler">Effacer la signature</button>
+                <button type="button" id="valider">Valider la location</button>
+                </div>
+            </div>
+           
+          
+        </div>
+
+
+
+
+    </div> <!--FIN DU BLOC CARTE-->
+
+
+  
+
+
+
+        </script>
+
+       
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script src="../ajax.js"></script>
+        <script src="../index.js"></script>
+       <script src ="reservation.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbQzI7frPiaY0jMTbYbRAqnSLUlW1olbU&callback=initMap" async defer></script>
+        <script src="../markerclusterer.js"></script>
+        <script src="../map.js"></script>
+        <script src="../canvas.js"></script>
+        <script src="../slider.js"></script>
+        
+    </div>
+</body>
+</html>
