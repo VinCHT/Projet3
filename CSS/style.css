@@ -1,0 +1,554 @@
+body {
+    font-family: 'Cinzel', serif;
+    font-size : 1em;
+    padding:0;
+    margin:0 auto;
+    background-color:#f4f7f6;
+}
+/*Ensemble du header*/
+.introContainer {
+    background-color:#141414;
+    overflow:hidden;
+    width:100%;
+    height:600px;
+    position: relative;
+    transition: all 0.54s linear;
+}
+/*Ensemble du BUTTON ACCUEIL ET INSCRIPTIONS*/
+.containerMenu {
+    display:flex;
+    flex-grow:0.1;
+    text-align: center;
+    cursor :pointer;
+    
+    color:#fff;
+    z-index:3;
+}
+
+/*boutons Acc et inscriptions*/
+.item {
+    flex-grow: 0.4;
+    text-align: center;
+    margin-top: 10px;
+    z-index:5;
+    font-size:3em;
+    color:white;
+}
+
+/*Ensemble du titre de bienvenue + gif + logo*/
+.containerAccueil {
+    display: flex;
+    width:100%;
+    height: 100%;
+}
+
+
+
+/*LOGO*/
+.imgLogo {
+    position:absolute;
+    top :80%;
+    transform : translate(-50% , -50%);
+    width : 15%;
+    left: 300px;
+    z-index:4;
+}
+/*GIF SPHERE*/
+.sphere {
+    display:block;
+    position :absolute;
+    transform:translate(-50% ,-50%);
+    top:50%;
+    right:0%;
+    z-index:2;
+    width : 25%;
+}
+
+/*texte bienvenue*/
+h1 {
+    color:#f1f1f1;
+    position : relative;
+    font-size: 4em;
+    letter-spacing: 10px;
+    top:30%;
+    left:10%;
+    flex-wrap: wrap;
+    z-index:6;
+
+}
+
+
+                                                /*Mise en place du Carousel*/
+
+/*Ensemble du diaporama*/
+.carouselContainer {
+    width: 60%;
+    height: 600px;
+    margin: 0 auto;
+    user-select: none;
+    padding: 10px;
+	box-sizing: border-box;
+	margin-top:420px;
+}
+/*Diaporama sans le bouton play pause situé en bas*/
+.slideShowContainer {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+    background-color: gainsboro;
+    position: relative;
+}
+
+/*Bouton Play / Pause*/
+#playPause {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url(/images/playPause.png);
+    background-repeat: no-repeat;
+    z-index: 5;
+    background-size: cover;
+	margin: 5px;
+    cursor: pointer;
+}
+
+/*Opacité du bouton au passage de la souris */
+#playPause:hover {
+    opacity: .7;
+}
+
+/*Ensemble des images et de leur légende */
+.contenuImages{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+}
+
+/*Uniquement les images*/
+.contenuImages img {
+    width: 100%;
+    height: 100%;
+}
+
+/*Chevron gauche et Chevron droit mais pas au passage de la souris (légere opacité)*/
+.leftArrow,.carouselContainer .slideShowContainer .rightArrow{
+    width: 50px;
+    background: #00000060;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    transition: 0.5s;
+    height: 72px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.carouselContainer .slideShowContainer .rightArrow{
+    left: auto;
+    right: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/*Opacité du passage de la souris du Chevron gauche et Chevron droit*/
+.leftArrow:hover,.carouselContainer .slideShowContainer .rightArrow:hover{
+    background: #000000d2;
+    cursor: pointer;
+}
+
+/*Signe des chevron*/
+.arrow {
+    display: inline-block;
+    border: 3px solid white;
+    width: 10px;
+    height: 10px;
+    border-left: none;
+    border-bottom: none;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/*Elaboration du chevron G*/
+.arrow.arrowLeft {
+    transform: rotateZ(-135deg);
+}
+
+/*Elaboration du chevron D*/
+.arrow.arrowRight {
+    transform: rotateZ(45deg);
+}
+
+/* Uniquement les légendes des diaporama*/
+.slideShowContainer>.legende {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    color: white;
+    font-family: sans-serif;
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    background: #000000d2;
+    height: 70px;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+/* Ciblage de l element recevant le texte de la légende*/
+.carouselContainer .slideShowContainer>.legende>.legendeText {
+    margin-top: 10px;
+}
+
+/*Elaborer l'animation de transition sur la gauche depuis la slide en présence*/
+.moveLeftCurrentSlide {
+    animation-name: moveLeftCurrent;
+   	animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode:forwards;
+
+}
+
+/*Elaborer l'animation de transition sur la gauche*/
+.moveLeftNextSlide {
+    animation-name: moveLeftNext;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode:forwards;
+}
+
+/*Chemin de l'animation*/
+@keyframes moveLeftCurrent {
+    from {
+		margin-left: 0;
+		opacity: 1;
+	}
+	to {margin-left: -100%;
+		opacity: 1;
+	}
+}
+
+/*Chemin de l'animation*/
+@keyframes moveLeftNext {
+    from {
+		margin-left: 100%;
+		opacity: 1;
+	}
+    to {
+		margin-left: 0%;
+		opacity: 1;
+	}
+}
+
+/*Elaborer l'animation de transition sur la droite depuis la slide en présence*/
+.carouselContainer .moveRightCurrentSlide {
+    animation-name: moveRightCurrent;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode:forwards;
+}
+
+/*Elaborer l'animation de transition sur la droite*/
+.carouselContainer .moveRightPrevSlide {
+    animation-name: moveRightPrev;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode:forwards;
+}
+
+/*Chemin de l'animation*/
+@keyframes moveRightCurrent {
+    from {
+		margin-left: 0;
+		opacity: 1;
+	}
+    to {
+		margin-left: 100%;
+		opacity: 1;
+	}
+}
+/*Chemin de l'animation*/
+@keyframes moveRightPrev {
+	from {margin-left: -100%;opacity: 1;
+	}
+	to { margin-left: 0%;opacity: 1;
+	}
+}
+
+/*Bouton PlayPause*/
+#playPause {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url(/images/playPause.png);
+    background-repeat: no-repeat;
+    z-index: 5;
+    background-size: cover;
+	margin: 5px;
+    cursor: pointer;
+}
+
+/*Bouton PlayPause au survol*/
+#playPause:hover {
+    opacity: .7;
+}
+
+
+                                            /*Fin mise en place du Carousel*/
+
+/* Elaboration de la partie carte d'un côté, et du formulaire + du panneau des stations de l'autre*/
+
+/* Ensemble de la carte + de l'etat de reservation ( message d'aide + formulaire + détail de la station choisie*/
+#mapEtat {
+    display:flex;
+    flex-direction: column;
+}
+
+/* Elaboration de la carte */
+#map { 
+	position:absolute;
+	top:1900px;
+	margin:auto;
+	width:50%;
+	height:50%; 
+	left:10px;
+	display:flex;
+	border:1px solid #004b98;  
+	
+}
+
+/* Affiche le premier message d'aide pour l'utilisateur*/
+#etatReservation {
+    width: 100%;
+    margin-left:600px;
+    height: 140px;
+    font-size: 1em;
+}
+
+/*Affiche l'ensemble du formulaire*/
+#formulaire {
+    margin-left:800px;
+}
+
+
+
+
+/*Ensemble des informations concernant les stations*/
+#stationInfo {
+    width: 100%;
+    margin-left:800px;
+    padding-right:00px;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+/*"Détails de la station*/
+h2 {
+    font-size: 1.5em;
+}
+
+/*Cellule bleues*/
+.table {
+	width: 10%;
+	background-color: #004b98;
+	border-collapse:collapse;
+	padding: 20px;
+}
+
+
+
+/*MARGE INTERNE des cellules*/
+.table tr td:first-child { 
+	padding: 20px;
+ }
+
+ /* Mettre une cellule sur deux en rouge*/
+tr:nth-child(odd) td {
+	background-color: #dc1d22;
+
+}
+
+/*mettre les données des celulles en blanc*/
+td {
+    color:white;
+	width: 100%;
+	height: 50px;
+}
+
+/* mettre les cellules row en plus épais*/
+tr {
+	font-size:1.5em;
+	width: 100%;
+}
+
+
+/* Elaboration du dernier Bloc dont le Footer*/
+#blocBas {
+    background-color:#f4f7f6;
+    margin-top:90px;
+   
+  
+}
+/*le message d'aide + le canvas*/
+#reservation {
+    display: flex;
+    justify-content: center;
+    
+}
+
+/*LE DEUXIEME MESSAGE*/
+#Aide2 {
+    margin:0 auto;
+}
+
+/*Elaboration du Canvas*/
+#canvas {
+    z-index:999;
+    border:1px solid #004b98;  
+	display:flex;
+	margin:0 auto;
+    
+}
+
+h3 , em {
+    display:flex;
+    justify-content: center;
+    font-size: 2em;
+    padding-bottom:15px;
+}
+/*Elaboration du tableau de bord (le pen couleur + épaisseur */
+#dashboard {
+    height: 50px;
+	width:100%;
+	display:flex;
+	justify-content: center;
+	margin: 10px;
+
+
+}
+/*Récapitulatif du temps, de la statio et du localStorage*/
+#conclusion {
+ background-color: #141414;
+ color:white;
+ width:100%;
+}
+
+/*Pour centrer*/
+#annulerReservation {
+	display:flex;
+	justify-content: center;
+	margin:auto;
+}
+
+/*Dans la balise Fieldset*/
+#minutes , #seconds {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	justify-content: Center;
+}
+
+#btnInsert , #annuler , #reserver
+ {
+    font-size:1em;
+}
+
+fieldset {
+    margin:50px;
+	border:1px solid  rgba(255, 255, 255, 0);  
+    margin-bottom: 50px;
+    font-size:1.5em;
+    text-align:center;
+}
+
+
+b {
+    font-family: 'bikes';
+    font-size:1em;
+    
+}
+
+/*Teexte de reservation en cours*/
+#chrono{
+    margin:50px;
+	margin:auto;
+    font-size:1.5em;
+    text-align:center;
+}
+@font-face {
+    font-family: 'theblacklist';
+    src:url('font/bikes.ttf') format('truetype');
+}
+
+@media screen and (min-width: 320px)  and (max-width: 800px) {
+
+    /*Ensemble du diaporama*/
+    .carouselContainer {
+        width: 100%;
+        height: 600px;    
+        margin-top:120px;
+    }
+/*Bouton PlayPause*/
+    #playPause {
+        margin: 45px auto;
+        
+    }
+/* Elaboration de la carte */
+    #map { 
+        position:absolute;
+        top:1600px;
+        width:100%;
+    }
+
+    /* Ensemble de la carte + de l'etat de reservation ( message d'aide + formulaire + détail de la station choisie*/
+    #mapEtat {
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+/* Affiche le premier message d'aide pour l'utilisateur*/
+    #etatReservation {
+        margin-left:0px;
+        width:100%;
+
+    }
+
+    /*Ensemble des informations concernant les stations*/
+    #stationInfo {
+    width: 100%;
+    margin-left:0px;
+    padding-right:0px;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+/*Affiche l'ensemble du formulaire*/
+    #formulaire {
+        margin-left:0px;
+        margin-top:1000px;
+       
+    }
+
+    /*LE DEUXIEME MESSAGE*/
+    #Aide2 {
+        
+        font-size: 0.9em;
+    }
+    /*Pour centrer*/
+    #annulerReservation {
+        margin-top:20px;
+       width:50%;
+    }
+
+    
+
+
+} /*fin screen 800 à 320*/
